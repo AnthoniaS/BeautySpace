@@ -23,7 +23,7 @@ def inclusao_servicos():
 @jwt_required
 def alterar_servicos(id):
     servicos = Servico.query.get_or_404(id)
-    servicos.nome = request.json['nome']
+    servicos.nome_servico = request.json['nome_servico']
     servicos.foto = request.json['foto']
     db.session.add(servicos)
     db.session.commit()
