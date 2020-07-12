@@ -2,7 +2,6 @@ from flask import Blueprint, jsonify, request
 import hashlib
 from banco import db
 from models.modelAgendamento import Agendamento
-from models.modelCliente import Cliente
 from flask_jwt_extended import jwt_required
 from datetime import datetime, timedelta
 # from flask_cors import CORS, cross_origin
@@ -18,7 +17,7 @@ def cadastro():
 
 
 @agendamentos.route('/agendamentos', methods=['POST'])
-@jwt_required
+#@jwt_required
 def inclusao():
     agendamento = Agendamento.from_json(request.json)
     db.session.add(agendamento)
@@ -44,11 +43,11 @@ def id_invalido(error):
 def alteracao(id):
     agendamento = Agendamento.query.get_or_404(id)
     agendamento.nome = request.json['nome']
-    agendamento.sobrenome = request.json['sobrenome']
+    agendamento.email = request.json['email']
     agendamento.telefone = request.json['telefone']
     agendamento.data = request.json['data']
     agendamento.hora = request.json['hora']
-    agendamento.servico = request.json['servico']
+    
 
     db.session.add(agendamento)
     db.session.commit()

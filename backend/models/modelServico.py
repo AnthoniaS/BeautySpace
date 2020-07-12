@@ -5,11 +5,10 @@ from config import config
 
 class Servico(db.Model):
     __tablename__ = 'servicos'
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer,autoincrement=True, primary_key=True)
     nome_servico = db.Column(db.String(60), nullable=False)
     foto = db.Column(db.String(120), nullable=False)
 
-    carros = db.relationship('Cliente')    
 
     def to_json(self):
         json_servicos = {

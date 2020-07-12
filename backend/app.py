@@ -1,7 +1,6 @@
 from flask import Flask
 from config import config
 from banco import db
-from resources.clientes import clientes
 from resources.servicos import servicos
 from resources.usuarios import usuarios
 from resources.agendamentos import agendamentos
@@ -17,7 +16,6 @@ db.init_app(app)
 jwt = JWTManager(app)
 CORS(app)
 
-app.register_blueprint(clientes)
 app.register_blueprint(servicos)
 app.register_blueprint(usuarios)
 app.register_blueprint(agendamentos)
